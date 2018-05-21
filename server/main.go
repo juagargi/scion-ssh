@@ -3,10 +3,11 @@ package main
 import (
 	"log"
 
-	"gopkg.in/alecthomas/kingpin.v2"
+	kingpin "gopkg.in/alecthomas/kingpin.v2"
 
+	squic "github.com/juagargi/temp_squic"
 	"github.com/scionproto/scion/go/lib/snet"
-	"github.com/scionproto/scion/go/lib/snet/squic"
+	// "github.com/scionproto/scion/go/lib/snet/squic"
 
 	"github.com/xabarass/scion-ssh/quicconn"
 	"github.com/xabarass/scion-ssh/scionutils"

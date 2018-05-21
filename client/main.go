@@ -9,10 +9,12 @@ import (
 
 	"golang.org/x/crypto/ssh/terminal"
 
-	"gopkg.in/alecthomas/kingpin.v2"
+	kingpin "gopkg.in/alecthomas/kingpin.v2"
+
+	// "github.com/scionproto/scion/go/lib/snet/squic"
+	squic "github.com/juagargi/temp_squic"
 
 	"github.com/scionproto/scion/go/lib/snet"
-	"github.com/scionproto/scion/go/lib/snet/squic"
 
 	"github.com/xabarass/scion-ssh/client/ssh"
 	"github.com/xabarass/scion-ssh/quicconn"
