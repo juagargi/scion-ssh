@@ -8,10 +8,10 @@ import (
 	"github.com/scionproto/scion/go/lib/snet"
 	"github.com/scionproto/scion/go/lib/snet/squic"
 
-	"github.com/xabarass/scion-ssh/server/config"
-	"github.com/xabarass/scion-ssh/server/ssh"
 	"github.com/xabarass/scion-ssh/quicconn"
 	"github.com/xabarass/scion-ssh/scionutils"
+	"github.com/xabarass/scion-ssh/server/config"
+	"github.com/xabarass/scion-ssh/server/ssh"
 )
 
 const (
@@ -26,7 +26,7 @@ var (
 	CONFIGRATION_FILE = kingpin.Flag("config", "SSH server configuration file").Default("config.toml").ExistingFile()
 )
 
-func initSCIONConnection(serverAddress, tlsCertFile, tlsKeyFile string)(*snet.Addr, error){
+func initSCIONConnection(serverAddress, tlsCertFile, tlsKeyFile string) (*snet.Addr, error) {
 	log.Println("Initializing SCION connection")
 
 	serverCCAddr, err := snet.AddrFromString(serverAddress)
@@ -75,17 +75,17 @@ func main() {
 	for {
 		//TODO: Check when to close the connections
 		sess, err := listener.Accept()
-	    if err != nil {
-	    	log.Printf("Failed to accept session", err)
-	    	continue
-	    }
-	    stream, err := sess.AcceptStream()
+		if err != nil {
+			log.Printf("Failed to accept session", err)
+			continue
+		}
+		stream, err := sess.AcceptStream()
 		if err != nil {
 			log.Printf("Failed to accept incoming connection (%s)", err)
 			continue
 		}
-		
-	    qc := &quicconn.QuicConn{Session:sess, Stream:stream}
-	    go sshServer.HandleConnection(qc)
+
+		qc := &quicconn.QuicConn{Session: sess, Stream: stream}
+		go sshServer.HandleConnection(qc)
 	}
 }
